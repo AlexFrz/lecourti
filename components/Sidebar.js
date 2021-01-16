@@ -9,8 +9,8 @@ export default function Sidebar() {
         <img className="sidebar__logo" src="/logo/LeCourti_logo.png" alt="" />
         <div className="sidebar__options">
           <SidebarOption title="Accueil" path="/" />
-          <SidebarOption title="Le Domaine" path="" />
-          <SidebarOption title="Les Chambres" path="" />
+          <SidebarOption title="Le Domaine" path="/ledomaine" />
+          <SidebarOption title="Les Chambres" path="/leschambres" />
           <SidebarOption title="Tarifs" path="" />
           <SidebarOption title="Contact" path="" />
         </div>
@@ -59,10 +59,12 @@ export default function Sidebar() {
       <style jsx>{`
         .sidebar {
           height: 100vh;
+          z-index: 999;
           flex: 0.2;
           width: 20vw;
           height: 100vh;
           background-color: #fafafa;
+          position: fixed;
         }
 
         .sidebar__logo {
@@ -70,14 +72,14 @@ export default function Sidebar() {
           justify-content: center;
           align-items: center;
           object-fit: contain;
-          height: 80px;
+          height: 90px;
           margin: 50px auto;
           margin-top: 45px;
           margin-right: auto;
         }
 
         .sidebar__options {
-          margin-top: 80px;
+          margin-top: 65px;
         }
 
         .sidebar__bottom {
@@ -94,13 +96,13 @@ export default function Sidebar() {
           height: 35px;
           font-size: 12px;
           align-items: center;
+        }
 
-          p {
-            line-height: 4px;
-            margin-left: 5px;
+        .sidebar__bottom-localisation p {
+          line-height: 4px;
+          margin-left: 5px;
 
-            align-self: center;
-          }
+          align-self: center;
         }
 
         .bold {

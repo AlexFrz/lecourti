@@ -1,18 +1,56 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { getCurrentDate } from "../javascripts/getCurrentDate";
+
+import { gsap } from "gsap";
 
 export default function Reservation() {
+  const [date, setDate] = useState(getCurrentDate());
+  const [nights, setNights] = useState(1);
+  const [persons, setPersons] = useState(1);
+  const [room, setRoom] = useState("Selectionnez...");
+  const [open, setOpen] = useState(true);
+
+  const reservationBody = useRef();
+
+  useEffect(() => {
+    open
+      ? gsap.fromTo(
+          [reservationBody.current],
+          {
+            y: -300,
+          },
+          { y: 4 },
+          { duration: 0.1 }
+        )
+      : gsap.fromTo(
+          [reservationBody.current],
+          {
+            y: 4,
+          },
+          { y: -300 },
+          { duration: 0.1 }
+        );
+  });
+
   return (
     <>
-      <div className="reservation">
+      <div className="reservation" onClick={(e) => setOpen(!open)}>
         <div className="reservation__header">
-          <h3>Réservation</h3>
+          {open ? (
+            <h3>Réservation</h3>
+          ) : (
+            <div className="flex">
+              <img src="/logo/calendargreen.png" className="green-calendar" />
+              <h3>Réservation</h3>
+            </div>
+          )}
         </div>
-        <div className="reservation__body">
+        <div className="reservation__body" ref={reservationBody}>
           <form action="">
             <fieldset>
               <div className="form__firstgroup--first">
                 <div className="formgroup--block">
-                  <label for="date" className="label__date">
+                  <label htmlFor="date" className="label__date">
                     <img src="/logo/Calendar.png" className="form__icon" />
                     Arrivée
                   </label>
@@ -20,41 +58,50 @@ export default function Reservation() {
                     type="date"
                     id="date"
                     className="calendar unstyled"
-                    value="2020-01-08"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
                   />
                 </div>
               </div>
               <div className="form__firstgroup--second">
                 <div className="formgroup">
-                  <label for="nights">
+                  <label htmlFor="nights">
                     <img src="/logo/night.png" className="form__icon" />
                   </label>
                   <input
                     type="number"
                     id="nights"
                     className="nights"
-                    placeholder={1}
+                    value={nights}
+                    onChange={(e) => setNights(e.target.value)}
                   />
                 </div>
                 <div className="formgroup">
-                  <label for="persons">
+                  <label htmlFor="persons">
                     <img src="/logo/people.png" className="form__icon" />
                   </label>
                   <input
                     type="number"
                     id="persons"
                     className="persons"
-                    placeholder={1}
+                    value={persons}
+                    onChange={(e) => setPersons(e.target.value)}
                   />
                 </div>
               </div>
             </fieldset>
             <div className="form__secondgroup">
               <div className="formgroup">
-                <label for="beds">
+                <label htmlFor="beds">
                   <img src="/logo/bed.png" className="form__icon" />
                 </label>
-                <select name="beds" id="beds" className="beds">
+                <select
+                  name="beds"
+                  id="beds"
+                  className="beds"
+                  value={room}
+                  onChange={(e) => setRoom(e.target.value)}
+                >
                   <option value="double">Selectionnez...</option>
                   <option value="double">Simple</option>
                 </select>
@@ -66,34 +113,44 @@ export default function Reservation() {
           </form>
         </div>
       </div>
+
       <style jsx>
         {`
           .reservation {
-            position: absolute;
+            position: fixed;
             width: 245px;
-            height: 285px;
             background-color: #fafafa;
             top: 0;
+            height: 60px;
             right: 35px;
             z-index: 999;
           }
 
           .reservation__header {
+            position: relative;
+            cursor: pointer;
             width: 100%;
             height: 60px;
+            width: 245px;
+            background-color: #fafafa;
+            z-index: 20 !important;
             display: flex;
             justify-content: center;
             align-items: center;
+          }
 
-            h3 {
-              font-size: 18px;
-              color: #29524e;
-            }
+          .reservation__header h3 {
+            margin-left: 3px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #29524e;
           }
 
           .reservation__body {
-            height: 210px;
-            background-color: rgba(200, 200, 200, 0.25);
+            position: relative;
+            z-index: 10 !important;
+            height: 230px;
+            background-color: #f3f3f3;
           }
 
           .formgroup {
@@ -154,10 +211,10 @@ export default function Reservation() {
 
             font-size: 12px;
             align-items: center;
+          }
 
-            img {
-              margin: 10px;
-            }
+          .label__date img {
+            margin: 10px;
           }
 
           .form__icon {
@@ -206,6 +263,21 @@ export default function Reservation() {
             font-weight: 500;
             margin: 12px;
             margin-top: 0;
+          }
+
+          .flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .green-calendar {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
           }
         `}
       </style>

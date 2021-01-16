@@ -1,5 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baskerville:ital@0;1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@font-face {
+  font-family: "Lora";
+  src: url("/fonts/Lora-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "LoraBold";
+  src: url("/fonts/Lora-Bold.ttf");
+  font-style: bold;
+  font-weight: 500;
+  font-display: swap;
+}
 
 :root {
   --green: #29524e;
@@ -14,7 +29,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  max-height: 100vw;
+
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
