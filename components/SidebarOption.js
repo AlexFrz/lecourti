@@ -1,6 +1,34 @@
 import React from "react";
 import TheLink from "./TheLink";
 import { useRouter } from "next/router";
+import { device } from "../javascripts/device";
+import styled from "styled-components";
+
+const StyledSidebarOption = styled.div`
+  @media ${device.laptop} {
+    display: flex;
+    align-items: center;
+    color: #141414;
+    width: 100%;
+    height: 75px;
+
+    border-bottom: 0.3px solid rgba(0, 0, 0, 0.15);
+    transition: all 0.3s;
+
+    cursor: pointer;
+    transition: 200ms color ease-in;
+
+    &:hover {
+      background-color: #29524e !important;
+    }
+
+    > h4 {
+      margin: 0 auto;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+`;
 
 export default function SidebarOption({ title, path }) {
   return (
@@ -13,7 +41,7 @@ export default function SidebarOption({ title, path }) {
       <style jsx>{`
         .selected {
           background-color: #29524e;
-          min-height: 75px;
+          height: 75px;
         }
 
         .selected:hover {
@@ -37,6 +65,16 @@ export default function SidebarOption({ title, path }) {
 
           cursor: pointer;
           transition: 200ms color ease-in;
+        }
+
+        @media ${device.mobileL} {
+          .sidebarOption {
+            height: 10vh;
+          }
+
+          .selected {
+            height: 11vh;
+          }
         }
 
         .sidebarOption:hover {

@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const size = {
   mobileS: "320px",
   mobileM: "375px",
-  mobileL: "425px",
+  mobileL: "475px",
   tablet: "768px",
   laptop: "1024px",
   laptopL: "1440px",
@@ -13,10 +13,19 @@ const size = {
 export const device = {
   mobileS: `(min-width: ${size.mobileS})`,
   mobileM: `(min-width: ${size.mobileM})`,
-  mobileL: `(min-width: ${size.mobileL})`,
+  mobileL: `(max-width: ${size.mobileL})`,
   tablet: `(min-width: ${size.tablet})`,
   laptop: `(min-width: ${size.laptop})`,
   laptopL: `(min-width: ${size.laptopL})`,
   desktop: `(min-width: ${size.desktop})`,
   desktopL: `(min-width: ${size.desktopL})`,
 };
+
+// @media ${device.mobileS} {
+// }
+// @media ${device.tablet} {
+// }
+// @media ${device.laptop} {
+// }
+// @media ${device.desktop} {
+// }

@@ -4,6 +4,7 @@ import Carousel from "../components/Carousel";
 import Reservation from "../components/Reservation";
 import Popup from "../components/Popup";
 import TheFooter from "../components/TheFooter";
+import { device } from "../javascripts/device";
 
 export default function Home() {
   return (
@@ -33,6 +34,10 @@ export default function Home() {
       <style jsx>{`
         .homepage {
           display: flex;
+        }
+
+        @media ${device.mobileL} {
+          display: block !important;
         }
       `}</style>
     </>

@@ -3,6 +3,7 @@ import ArrowLeftIcon from "@material-ui/icons/ArrowLeft";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 
 import { gsap } from "gsap";
+import { device } from "../javascripts/device";
 
 export default function Popup() {
   const popup = useRef();
@@ -54,11 +55,18 @@ export default function Popup() {
             right: 0;
             bottom: 100px;
             background-color: #f7f7f7;
-            z-index: 999;
+            z-index: 998;
             display: flex;
             justify-content: space-between;
             align-items: center;
           }
+
+          @media ${device.mobileL} {
+            .popup {
+              width: 90vw;
+            }
+          }
+
           .popup__head {
             width: 35px;
             height: 120px;

@@ -3,18 +3,11 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import SwiperCore, { EffectFade, Navigation, Pagination } from "swiper";
+import { device } from "../javascripts/device";
 
 SwiperCore.use([EffectFade, Navigation, Pagination]);
 
 export default function Carousel({ typeOf }) {
-  // const slides = [];
-  // for (let i = 0; i < 5; i += 1) {
-  //   slides.push(
-  //     <SwiperSlide key={`slide-${i}`}>
-  //       <img src="/images/pool.jpg" alt="" className="carousel" />
-  //     </SwiperSlide>
-  //   );
-  // }
   return (
     <>
       <Swiper
@@ -46,11 +39,20 @@ export default function Carousel({ typeOf }) {
       <style jsx>{`
         .bigcarousel {
           position: relative;
-          flex: 0.8;
           height: 100vh;
-          width: 80vw;
+          width: auto;
           margin-left: 20vw;
           z-index: -1;
+        }
+
+        @media ${device.mobileL} {
+          .bigcarousel {
+            margin-left: 0;
+            height: 86vh;
+            width: auto;
+            object-fit: cover;
+            margin-left: -50%;
+          }
         }
       `}</style>
     </>
